@@ -31,9 +31,9 @@ SoundBoard::SoundBoard()
 };
 
 /**
- * @brief Play sound if throttle status changes from
+ * @brief Play sound if throttle status changes from neutral to drive.
  *
- * @param state
+ * @param state: current throttle status read from CAN
  */
 void SoundBoard::PlaySound(ETCState state)
 {
