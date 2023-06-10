@@ -2,6 +2,7 @@
 #include <driver/ledc.h>
 #include "soundBoard.h"
 #include "virtualTimer.h"
+#include <string>
 
 #define SERIAL_DEBUG
 
@@ -28,7 +29,9 @@ CANRXMessage<1> rx_message{can_bus, sound_board.kCANID, throttle_status_rx_signa
  */
 void ThrottleStatusCheck()
 {
+
   sound_board.PlaySound(throttle_status_rx_signal);
+
 }
 
 void setup()
@@ -41,6 +44,7 @@ void setup()
 
   // Initialize CAN bus.
   can_bus.Initialize(ICAN::BaudRate::kBaud1M);
+  ledcWrite(0, 0);
 
   // Initialize our timer(s)
   read_timer.AddTimer(100, ThrottleStatusCheck);

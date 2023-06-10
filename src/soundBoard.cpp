@@ -24,7 +24,8 @@ SoundBoard::SoundBoard()
     notes = {293.66 / 2, 392, 440, 587.33};
     noteDurations = {300, 100, 100, 100};
     // LED Setup
-    ledcAttachPin(23, channel);
+    ledcAttachPin(17, channel);
+    ledcWrite(channel, 0);
     ledcSetup(channel, 392, resolution);
     // Set the initial previous state to off.
     previousState = ETCState::OFF;
@@ -41,10 +42,10 @@ void SoundBoard::PlaySound(ETCState state)
     if (previousState == ETCState::N && state == ETCState::DRIVE)
     {
         ledcWrite(channel, 127);
-        for (int i = 0; i < 1000; i++)
+        for (int i = 0; i < 4; i++)
         {
             ledcWriteTone(channel, notes[i]);
-            delay(noteDurations[i] + 100);
+            delay(noteDurations[i]);
         }
         ledcWrite(channel, 0);
     }
