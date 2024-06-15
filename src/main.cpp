@@ -28,27 +28,27 @@ CANRXMessage<1> rx_message{can_bus, sound_board.kCANID, throttle_status_rx_signa
  */
 void ThrottleStatusCheck()
 {
-  sound_board.PlaySound(throttle_status_rx_signal);
+    sound_board.PlaySound(throttle_status_rx_signal);
 }
 
 void setup()
 {
 
 #ifdef SERIAL_DEBUG
-  // Initialize serial output
-  Serial.begin(9600);
+    // Initialize serial output
+    Serial.begin(9600);
 #endif
 
-  // Initialize CAN bus.
-  can_bus.Initialize(ICAN::BaudRate::kBaud1M);
+    // Initialize CAN bus.
+    can_bus.Initialize(ICAN::BaudRate::kBaud1M);
 
-  // Initialize our timer(s)
-  read_timer.AddTimer(100, ThrottleStatusCheck);
+    // Initialize our timer(s)
+    read_timer.AddTimer(100, ThrottleStatusCheck);
 }
 
 void loop()
 {
-  // Necessary to tick the CAN bus to get the throttle_status_rx_sign.
-  can_bus.Tick();
-  read_timer.Tick(millis());
+    // Necessary to tick the CAN bus to get the throttle_status_rx_sign.
+    can_bus.Tick();
+    read_timer.Tick(millis());
 }

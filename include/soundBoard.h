@@ -8,7 +8,7 @@ public:
     // Constructor
     SoundBoard();
 
-    const uint16_t kCANID{0x301};
+    const uint16_t kCANID{0x000};
 
     enum class ETCState;
 
