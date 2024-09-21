@@ -41,6 +41,7 @@ void setup()
 
     // Initialize CAN bus.
     can_bus.Initialize(ICAN::BaudRate::kBaud1M);
+    sound_board.Initialize();
 
     // Initialize our timer(s)
     read_timer.AddTimer(100, ThrottleStatusCheck);
